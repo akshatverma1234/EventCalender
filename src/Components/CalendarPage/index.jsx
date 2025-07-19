@@ -67,7 +67,7 @@ const CalenderPage = () => {
       </div>
 
       <div className="events w-[60%] h-[100%] !py-12">
-        <div className="event-popup absolute top-[38%] left-[3rem] bg-black aspect-[10/9] rounded-[1rem] shadow-2xl w-[clamp(25rem,21cqi,40rem)] flex flex-col justify-center items-center gap-y-[2rem]">
+        <div className="event-popup absolute top-[38%] left-[3rem] bg-black aspect-[10/9] rounded-[1rem] shadow-2xl w-[clamp(25rem,21cqi,40rem)] flex flex-col justify-center items-center gap-y-8 hidden">
           <div className="time-input flex gap-y-[1rem] text-white">
             <div className="event-popup-time">Time</div>
             <input
@@ -87,13 +87,10 @@ const CalenderPage = () => {
               placeholder="MM"
             />
           </div>
-          <textarea
-            placeholder="Enter Event Text (Maximum 60 Characters)"
-            maxLength={60}
-          ></textarea>
+          <textarea placeholder="Enter Event Text (Maximum 60 Characters)"></textarea>
           <button className="event-popup-btn">Add Event</button>
           <button className="close-event-popup">
-            <IoClose />
+            <IoClose className="text-white text-[1.5rem]" />
           </button>
         </div>
 
