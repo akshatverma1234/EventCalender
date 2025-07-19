@@ -1,16 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import React from "react";
+import CalenderPage from "./Components/CalendarPage";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
   return (
     <>
-      <h1 className="text-amber-300">Hello</h1>
+      <CalenderPage />
     </>
   );
-}
+};
 
 export default App;
