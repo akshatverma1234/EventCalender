@@ -42,3 +42,64 @@
   cursor: pointer;
   text-shadow: 0 0.5rem 1rem rgba(0, 0, 0.2);
 }
+.event {
+  width: 100%;
+  height: 7rem;
+  position: relative;
+  background-color: #00a3ff;
+  padding: 1.5rem 0;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.event-date-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  border-right: 0 1rem solidOrgba (255, 255, 255, 0 5);
+}
+.event-date {
+  font-size: clamp(1rem, 1cqi, 1.2rem);
+  color: #ddd;
+}
+.event-time {
+  font-size: clamp(1.3rem, 1cqi, 1.6rem);
+  line-height: 4rem;
+  font-weight: bold;
+  color: #fff;
+}
+.event-text {
+  font-size: clamp(1.2rem, 1cqi, 1.4rem);
+  line-height: 2rem;
+  color: #fff;
+  width: 75%;
+  padding: 0 3rem 0 1rem;
+  overflow-wrap: break-word;
+}
+.event-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.event-buttons i {
+  font-size: 1.6rem;
+  color: #fff;
+  cursor: pointer;
+}
+.event-popup-time {
+  width: clamp(4rem, 4cqi, 7rem);
+  background-color: 1#00a3ff;
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.5rem, 1.5cqi, 2.2rem);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 1.5rem 1rem rgba(0, 163, 255, 0.2);
+  letter-spacing: 0.1rem;
+}
