@@ -66,9 +66,9 @@ const CalenderPage = () => {
         </div>
       </div>
 
-      <div className="events">
-        <div className="event-popup">
-          <div className="time-input">
+      <div className="events w-[60%] h-[100%] !py-12">
+        <div className="event-popup absolute top-[38%] left-[3rem] bg-black aspect-[10/9] rounded-[1rem] shadow-2xl w-[clamp(25rem,21cqi,40rem)] flex flex-col justify-center items-center gap-y-[2rem]">
+          <div className="time-input flex gap-y-[1rem] text-white">
             <div className="event-popup-time">Time</div>
             <input
               type="number"
@@ -104,8 +104,8 @@ const CalenderPage = () => {
           </div>
           <div className="event-text">Meeting with John</div>
           <div className="event-buttons">
-            <LuPencilLine />
-            <IoClose />
+            <LuPencilLine className="text-[1.6rem] text-[#fff] cursor-pointer" />
+            <IoClose className="text-[1.6rem] text-[#fff] cursor-pointer" />
           </div>
         </div>
       </div>
