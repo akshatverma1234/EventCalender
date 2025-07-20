@@ -1,5 +1,6 @@
 import React from "react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import "./responsive.css";
 
 const CalendarHeader = ({
   currentMonth,
