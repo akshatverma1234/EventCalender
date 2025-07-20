@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { LuPencilLine } from "react-icons/lu";
 import "./style.css";
 
 const CalenderPage = () => {
+  const weeks = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const currentDate = new Date();
+  const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
+  const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
+
+  const prevMonth = () => {
+    setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
+    setCurrentYear((prevYear) =>
+      currentMonth === 0 ? prevYear - 1 : prevYear
+    );
+  };
+
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+
   return (
     <div className="calendar-app !w-[95%] h-[90%] !min-w-[90vmin] !mt-2 bg-[#1e242d] !p-12 rounded-[3rem] border-2 border-[#0f1319] flex gap-[5rem]">
       <div className="calendar w-[40%]">
@@ -20,49 +49,18 @@ const CalenderPage = () => {
         </div>
 
         <div className="weekdays w-[100%] flex !my-12">
-          <span>Sun</span>
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
+          {weeks.map((day) => (
+            <span key={day}>{day}</span>
+          ))}
         </div>
 
         <div className="days flex flex-wrap">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-          <span>8</span>
-          <span>9</span>
-          <span>10</span>
-          <span>11</span>
-          <span>12</span>
-          <span>13</span>
-          <span>14</span>
-          <span>15</span>
-          <span>16</span>
-          <span>17</span>
-          <span>18</span>
-          <span className="current-day bg-blue-500 rounded-[50%] shadow-2xl">
-            19
-          </span>
-          <span>20</span>
-          <span>21</span>
-          <span>22</span>
-          <span>23</span>
-          <span>24</span>
-          <span>25</span>
-          <span>26</span>
-          <span>27</span>
-          <span>28</span>
-          <span>29</span>
-          <span>30</span>
-          <span>31</span>
+          {[...Array(firstDayOfMonth).keys()].map((_, ind) => (
+            <span key={`empty-${ind}`} />
+          ))}
+          {[...Array(daysInMonth).keys()].map((day) => (
+            <span key={day + 1}>{day + 1}</span>
+          ))}
         </div>
       </div>
 
