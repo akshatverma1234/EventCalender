@@ -1,0 +1,6 @@
+@media (max-width: 850px) {
+  .weekdays {
+    margin: 2rem 0;
+    gap: 10px;
+  }
+}
