@@ -74,7 +74,7 @@ const CalenderPage = () => {
     setEvents([...events, newEvent]);
     setEventTime({ hours: "00", minutes: "00" });
     setEventText("");
-    setEvents(false);
+    setShowEvent(false);
   };
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
@@ -166,7 +166,9 @@ const CalenderPage = () => {
                 }
               }}
             ></textarea>
-            <button className="event-popup-btn">Add Event</button>
+            <button className="event-popup-btn" onClick={handleEventSubmit}>
+              Add Event
+            </button>
             <button
               className="close-event-popup"
               onClick={() => setShowEvent(false)}
@@ -176,17 +178,23 @@ const CalenderPage = () => {
           </div>
         )}
 
-        <div className="event">
-          <div className="event-date-wrapper">
-            <div className="event-date">July 15, 2025</div>
-            <div className="event-time">10:00</div>
+        {events.map((event, ind) => (
+          <div className="event" key={ind}>
+            <div className="event-date-wrapper">
+              <div className="event-date">
+                {`${
+                  months[event.date.getMonth()]
+                } ${event.date.getDate()}, ${event.date.getFullYear()}`}
+              </div>
+              <div className="event-time">{event.time}</div>
+            </div>
+            <div className="event-text">{event.text}</div>
+            <div className="event-buttons">
+              <LuPencilLine className="text-[1.6rem] text-[#fff] cursor-pointer" />
+              <IoClose className="text-[1.6rem] text-[#fff] cursor-pointer" />
+            </div>
           </div>
-          <div className="event-text">Meeting with John</div>
-          <div className="event-buttons">
-            <LuPencilLine className="text-[1.6rem] text-[#fff] cursor-pointer" />
-            <IoClose className="text-[1.6rem] text-[#fff] cursor-pointer" />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
