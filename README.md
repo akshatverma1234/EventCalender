@@ -1,12 +1,43 @@
-# React + Vite
+# 🗓️ Custom Event Calendar App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek and interactive calendar application built with **React** and **Tailwind CSS** that lets you add, view, and delete events with ease. Designed with smooth UI components.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 📅 Monthly calendar view with accurate date rendering
+- ➕ Add events via a styled popup modal
+- 🗑️ Delete individual events
+- 🖼️ Responsive UI with modern design
+- 💾 State-managed via React props and hooks
+- 📌 Styled using **Tailwind CSS** and custom shadows/glows
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Demo
+
+<img width="1898" height="904" alt="Screenshot 2025-07-20 214258" src="https://github.com/user-attachments/assets/16b6cf20-aafd-4d9c-99c7-ef5063464fe9" />
+
+---
+
+## 🛠️ Technologies Used
+
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+
+---
+
+## 📦 Setup Instructions
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/custom-event-calendar.git
+cd custom-event-calendar
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
