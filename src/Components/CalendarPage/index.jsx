@@ -31,6 +31,13 @@ const CalenderPage = () => {
     );
   };
 
+  const nextMonth = () => {
+    setCurrentMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
+    setCurrentYear((prevYear) =>
+      currentMonth === 11 ? prevYear + 1 : prevYear
+    );
+  };
+
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
@@ -43,8 +50,14 @@ const CalenderPage = () => {
           <h2 className="month">May,</h2>
           <h2 className="year">2025</h2>
           <div className="btn flex gap-x-[1rem] !ml-auto">
-            <FaAngleLeft className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer" />
-            <FaAngleRight className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer" />
+            <FaAngleLeft
+              className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer"
+              onClick={prevMonth}
+            />
+            <FaAngleRight
+              className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer"
+              onClick={nextMonth}
+            />
           </div>
         </div>
 
