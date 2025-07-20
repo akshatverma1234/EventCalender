@@ -47,8 +47,8 @@ const CalenderPage = () => {
         <h1 className="heading">Calendar</h1>
 
         <div className="navigate-date flex items-center gap-x-[1rem] !pl-5">
-          <h2 className="month">May,</h2>
-          <h2 className="year">2025</h2>
+          <h2 className="month">{months[currentMonth]},</h2>
+          <h2 className="year">{currentYear}</h2>
           <div className="btn flex gap-x-[1rem] !ml-auto">
             <FaAngleLeft
               className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer"
