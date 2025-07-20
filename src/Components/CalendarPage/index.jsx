@@ -101,6 +101,11 @@ const CalenderPage = () => {
     setEditingEvent(e);
     setShowEvent(true);
   };
+
+  const handleDeleteEvent = (eId) => {
+    const updateEvents = events.filter((e) => e.id !== eId);
+    setEvents(updateEvents);
+  };
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
@@ -192,7 +197,7 @@ const CalenderPage = () => {
               }}
             ></textarea>
             <button className="event-popup-btn" onClick={handleEventSubmit}>
-              Add Event
+              {editingEvent ? "Update Event" : "Add Event"}
             </button>
             <button
               className="close-event-popup"
@@ -215,8 +220,14 @@ const CalenderPage = () => {
             </div>
             <div className="event-text">{event.text}</div>
             <div className="event-buttons">
-              <LuPencilLine className="text-[1.6rem] text-[#fff] cursor-pointer" />
-              <IoClose className="text-[1.6rem] text-[#fff] cursor-pointer" />
+              <LuPencilLine
+                className="text-[1.6rem] text-[#fff] cursor-pointer"
+                onClick={() => handleEditEvent(event)}
+              />
+              <IoClose
+                className="text-[1.6rem] text-[#fff] cursor-pointer"
+                onClick={() => handleDeleteEvent(event.id)}
+              />
             </div>
           </div>
         ))}
