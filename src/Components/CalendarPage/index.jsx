@@ -28,6 +28,7 @@ const CalenderPage = () => {
   const [events, setEvents] = useState([]);
   const [eventTime, setEventTime] = useState({ hours: "00", minutes: "00" });
   const [eventText, setEventText] = useState(" ");
+  const [editingEvent, setEditingEvent] = useState(null);
 
   const prevMonth = () => {
     setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
@@ -59,11 +60,13 @@ const CalenderPage = () => {
       setShowEvent(true);
       setEventTime({ hours: "00", minutes: "00" });
       setEventText("");
+      setEditingEvent(null);
     }
   };
 
   const handleEventSubmit = () => {
     const newEvent = {
+      id: editingEvent ? editingEvent.id : Date.now(),
       date: selectDate,
       time: `${eventTime.hours.padStart(2, "0")}:${eventTime.minutes.padStart(
         2,
@@ -71,10 +74,32 @@ const CalenderPage = () => {
       )}`,
       text: eventText,
     };
-    setEvents([...events, newEvent]);
+    let updatedEvents = [...events];
+    if (editingEvent) {
+      updatedEvents = updatedEvents.map((event) =>
+        event.id === editingEvent.id ? newEvent : event
+      );
+    } else {
+      updatedEvents.push(newEvent);
+    }
+
+    updatedEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+    setEvents(updatedEvents);
     setEventTime({ hours: "00", minutes: "00" });
     setEventText("");
     setShowEvent(false);
+    setEditingEvent(null);
+  };
+
+  const handleEditEvent = (e) => {
+    setSelectedDate(new Date(e.date));
+    setEventTime({
+      hours: e.time.split(" : ")[0],
+      minutes: e.time.split(" : ")[1],
+    });
+    setEventText(e.text);
+    setEditingEvent(e);
+    setShowEvent(true);
   };
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
