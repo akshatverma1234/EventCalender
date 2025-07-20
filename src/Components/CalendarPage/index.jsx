@@ -1,8 +1,6 @@
-import React, { use, useEffect, useState } from "react";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
-import { LuPencilLine } from "react-icons/lu";
+import React, { useEffect, useState } from "react";
 import "./style.css";
+import "./responsive.css";
 import CalendarHeader from "../CalendarHeader";
 import WeekDaysRow from "../WeekDaysRows";
 import EventPopup from "../EventPopup";
@@ -167,7 +165,7 @@ const CalenderPage = () => {
         />
       </div>
 
-      <div className="events w-[60%] h-[100%] !py-12">
+      <div className="events w-[60%] h-[100%] !py-12 overflow-y-auto">
         {showEvent && (
           <EventPopup
             eventTime={eventTime}
