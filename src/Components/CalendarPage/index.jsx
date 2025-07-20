@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { LuPencilLine } from "react-icons/lu";
@@ -25,10 +25,31 @@ const CalenderPage = () => {
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
   const [selectDate, setSelectedDate] = useState(currentDate);
   const [showEvent, setShowEvent] = useState(false);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(() => {
+    const storedEvents = localStorage.getItem("calendarEvents");
+    if (storedEvents) {
+      const parsedEvents = JSON.parse(storedEvents);
+      return parsedEvents.map((event) => ({
+        ...event,
+        date: new Date(event.date),
+      }));
+    }
+    return [];
+  });
+
   const [eventTime, setEventTime] = useState({ hours: "00", minutes: "00" });
   const [eventText, setEventText] = useState(" ");
   const [editingEvent, setEditingEvent] = useState(null);
+
+  useEffect(() => {
+    const serializedEvents = JSON.stringify(
+      events.map((event) => ({
+        ...event,
+        date: event.date.toISOString(),
+      }))
+    );
+    localStorage.setItem("calendarEvents", serializedEvents);
+  }, [events]);
 
   const prevMonth = () => {
     setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
@@ -106,6 +127,14 @@ const CalenderPage = () => {
     const updateEvents = events.filter((e) => e.id !== eId);
     setEvents(updateEvents);
   };
+
+  const handleTimeChange = (e) => {
+    const { name, value } = e.target;
+    setEventTime((prevTime) => ({
+      ...prevTime,
+      [name]: value.padStart(2, "0"),
+    }));
+  };
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
@@ -170,9 +199,7 @@ const CalenderPage = () => {
                 className="hours"
                 placeholder="HH"
                 value={eventTime.hours}
-                onChange={(e) =>
-                  setEventTime({ ...eventTime, hours: e.target.value })
-                }
+                onChange={handleTimeChange}
               />
               <input
                 type="number"
@@ -182,9 +209,7 @@ const CalenderPage = () => {
                 className="minutes"
                 placeholder="MM"
                 value={eventTime.minutes}
-                onChange={(e) =>
-                  setEventTime({ ...eventTime, minutes: e.target.value })
-                }
+                onChange={handleTimeChange}
               />
             </div>
             <textarea
