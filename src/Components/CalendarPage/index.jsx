@@ -72,7 +72,18 @@ const CalenderPage = () => {
             <span key={`empty-${ind}`} />
           ))}
           {[...Array(daysInMonth).keys()].map((day) => (
-            <span key={day + 1}>{day + 1}</span>
+            <span
+              key={day + 1}
+              className={
+                day + 1 === currentDate.getDate() &&
+                currentMonth === currentDate.getMonth() &&
+                currentYear === currentDate.getFullYear()
+                  ? "currentDate"
+                  : ""
+              }
+            >
+              {day + 1}
+            </span>
           ))}
         </div>
       </div>
