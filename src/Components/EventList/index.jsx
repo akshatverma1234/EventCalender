@@ -1,6 +1,7 @@
 import React from "react";
 import { LuPencilLine } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
+import "./style.css";
 
 const EventList = ({ events, months, handleEditEvent, handleDeleteEvent }) => (
   <>
