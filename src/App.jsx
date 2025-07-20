@@ -4,7 +4,7 @@ import CalenderPage from "./Components/CalendarPage";
 const App = () => {
   return (
     <>
-      <div className="container w-full h-screen bg-[#2c3542] grid place-items-center perspective-[100rem]">
+      <div className="container w-full h-full bg-[#2c3542] grid place-items-center">
         <CalenderPage />
       </div>
     </>

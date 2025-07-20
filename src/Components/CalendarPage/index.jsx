@@ -3,9 +3,13 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { LuPencilLine } from "react-icons/lu";
 import "./style.css";
+import CalendarHeader from "../CalendarHeader";
+import WeekDaysRow from "../WeekDaysRows";
+import EventPopup from "../EventPopup";
+import EventList from "../EventList";
+import CalendarDays from "../CalendarDays";
 
 const CalenderPage = () => {
-  const weeks = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = [
     "January",
     "February",
@@ -139,123 +143,49 @@ const CalenderPage = () => {
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
   return (
-    <div className="calendar-app !w-[95%] h-[90%] !min-w-[90vmin] !mt-2 bg-[#1e242d] !p-12 rounded-[3rem] border-2 border-[#0f1319] flex gap-[5rem]">
+    <div className="calendar-app !w-[95%] h-[95%] !min-w-[90vmin] !mt-1 bg-[#e9e9e9] !p-12 rounded-[3rem] border-2 border-[#0f1319] flex gap-[5rem]">
       <div className="calendar w-[40%]">
         <h1 className="heading">Calendar</h1>
 
-        <div className="navigate-date flex items-center gap-x-[1rem] !pl-5">
-          <h2 className="month">{months[currentMonth]},</h2>
-          <h2 className="year">{currentYear}</h2>
-          <div className="btn flex gap-x-[1rem] !ml-auto">
-            <FaAngleLeft
-              className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer"
-              onClick={prevMonth}
-            />
-            <FaAngleRight
-              className="w-8 h-8 bg-[#2c3542] rounded-full flex justify-center items-center text-2xl text-[#c97f1a] cursor-pointer"
-              onClick={nextMonth}
-            />
-          </div>
-        </div>
+        <CalendarHeader
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+          months={months}
+          prevMonth={prevMonth}
+          nextMonth={nextMonth}
+        />
 
-        <div className="weekdays w-[100%] flex !my-12">
-          {weeks.map((day) => (
-            <span key={day}>{day}</span>
-          ))}
-        </div>
+        <WeekDaysRow />
 
-        <div className="days flex flex-wrap">
-          {[...Array(firstDayOfMonth).keys()].map((_, ind) => (
-            <span key={`empty-${ind}`} />
-          ))}
-          {[...Array(daysInMonth).keys()].map((day) => (
-            <span
-              key={day + 1}
-              className={
-                day + 1 === currentDate.getDate() &&
-                currentMonth === currentDate.getMonth() &&
-                currentYear === currentDate.getFullYear()
-                  ? "currentDate"
-                  : ""
-              }
-              onClick={() => handleClick(day + 1)}
-            >
-              {day + 1}
-            </span>
-          ))}
-        </div>
+        <CalendarDays
+          daysInMonth={daysInMonth}
+          firstDayOfMonth={firstDayOfMonth}
+          currentDate={currentDate}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+          handleClick={handleClick}
+        />
       </div>
 
       <div className="events w-[60%] h-[100%] !py-12">
         {showEvent && (
-          <div className="event-popup absolute top-[38%] left-[3rem] bg-black aspect-[10/9] rounded-[1rem] shadow-2xl w-[clamp(25rem,21cqi,40rem)] flex flex-col justify-center items-center gap-y-8">
-            <div className="time-input flex gap-y-[1rem] text-white">
-              <div className="event-popup-time">Time</div>
-              <input
-                type="number"
-                name="hours"
-                min={0}
-                max={24}
-                className="hours"
-                placeholder="HH"
-                value={eventTime.hours}
-                onChange={handleTimeChange}
-              />
-              <input
-                type="number"
-                name="minutes"
-                min={0}
-                max={60}
-                className="minutes"
-                placeholder="MM"
-                value={eventTime.minutes}
-                onChange={handleTimeChange}
-              />
-            </div>
-            <textarea
-              placeholder="Enter Event Text (Maximum 60 Characters)"
-              value={eventText}
-              onChange={(e) => {
-                if (e.target.value.length <= 60) {
-                  setEventText(e.target.value);
-                }
-              }}
-            ></textarea>
-            <button className="event-popup-btn" onClick={handleEventSubmit}>
-              {editingEvent ? "Update Event" : "Add Event"}
-            </button>
-            <button
-              className="close-event-popup"
-              onClick={() => setShowEvent(false)}
-            >
-              <IoClose className="text-white text-[1.5rem]" />
-            </button>
-          </div>
+          <EventPopup
+            eventTime={eventTime}
+            handleTimeChange={handleTimeChange}
+            eventText={eventText}
+            setEventText={setEventText}
+            handleEventSubmit={handleEventSubmit}
+            setShowEvent={setShowEvent}
+            editingEvent={editingEvent}
+          />
         )}
 
-        {events.map((event, ind) => (
-          <div className="event" key={ind}>
-            <div className="event-date-wrapper">
-              <div className="event-date">
-                {`${
-                  months[event.date.getMonth()]
-                } ${event.date.getDate()}, ${event.date.getFullYear()}`}
-              </div>
-              <div className="event-time">{event.time}</div>
-            </div>
-            <div className="event-text">{event.text}</div>
-            <div className="event-buttons">
-              <LuPencilLine
-                className="text-[1.6rem] text-[#fff] cursor-pointer"
-                onClick={() => handleEditEvent(event)}
-              />
-              <IoClose
-                className="text-[1.6rem] text-[#fff] cursor-pointer"
-                onClick={() => handleDeleteEvent(event.id)}
-              />
-            </div>
-          </div>
-        ))}
+        <EventList
+          events={events}
+          months={months}
+          handleEditEvent={handleEditEvent}
+          handleDeleteEvent={handleDeleteEvent}
+        />
       </div>
     </div>
   );

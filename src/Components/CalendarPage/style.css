@@ -12,21 +12,21 @@
 
 .heading {
   font-family: "Bebas Neue", sans-serif;
-  font-size: clamp(4rem, 3.8cqi, 7rem);
-  color: #fff;
+  font-size: clamp(2rem, 2.8cqi, 5rem);
+  color: #000000;
   letter-spacing: 0.3rem;
   padding-left: 1rem;
 }
 .navigate-date h2 {
   font-size: clamp(1.5rem, 1.5cqi, 2.5rem);
-  color: #bbb;
+  color: #4f4b4b;
 }
 .weekdays span {
   width: calc(100% / 7);
   font-size: clamp(1rem, 0.8cqi, 1.3rem);
   font-weight: bold;
   text-transform: uppercase;
-  color: #78879e;
+  color: #325a97;
   letter-spacing: 0.1rem;
   display: flex;
   justify-content: center;
@@ -38,9 +38,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ece7e7;
+  color: #000000;
   cursor: pointer;
-  text-shadow: 0 0.5rem 1rem rgba(0, 0, 0.2);
+  text-shadow: 0 0.5rem 1rem rgb(142, 142, 142);
 }
 .event {
   width: 100%;
