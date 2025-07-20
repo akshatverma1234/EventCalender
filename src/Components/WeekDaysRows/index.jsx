@@ -1,9 +1,9 @@
-import React from "react";
+import "./responsive.css";
 
 const WeekDaysRow = () => {
   const weeks = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return (
-    <div className="weekdays w-[100%] flex !my-9 ">
+    <div className="weekdays w-[100%] flex !my-9">
       {weeks.map((day) => (
         <span key={day}>{day}</span>
       ))}
