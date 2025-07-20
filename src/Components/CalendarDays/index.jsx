@@ -1,4 +1,4 @@
-import React from "react";
+import "./responsive.css";
 
 const CalendarDays = ({
   daysInMonth,
