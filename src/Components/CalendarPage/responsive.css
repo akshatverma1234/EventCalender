@@ -1,0 +1,28 @@
+@media (max-width: 850px) {
+  .calendar-app {
+    flex-direction: column;
+    row-gap: 2rem;
+    aspect-ratio: 3/2;
+  }
+  .calender {
+    width: 70%;
+    margin: auto;
+  }
+  .events {
+    width: 80%;
+    margin: auto;
+  }
+}
+@media (max-width: 500px) {
+  .calendar-app {
+    aspect-ratio: 10/9;
+  }
+  .calender {
+    width: 100%;
+  }
+}
+@media (max-width: 350px) {
+  .calendar-app {
+    aspect-ratio: 3/2;
+  }
+}
