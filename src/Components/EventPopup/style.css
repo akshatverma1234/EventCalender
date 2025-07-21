@@ -1,0 +1,78 @@
+.event-popup-time {
+  width: clamp(4rem, 4cqi, 7rem);
+  background-color: #00a3ff;
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.5rem, 1.5cqi, 2.2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 1.5rem 1rem rgba(0, 163, 255, 0.2);
+  letter-spacing: 0.1rem;
+}
+.time-input input {
+  background-color: transparent;
+  border: none;
+  border-top: 0.2rem solid#00a3ff;
+  border-bottom: 0.2rem solid#00a3ff;
+  color: #fff;
+  width: clamp(4rem, 4cqi, 7rem);
+  height: 4rem;
+  text-align: center;
+  font-size: clamp(1.2rem, 1.2cqi, 1.6rem);
+}
+.time-input input[type="number"]::-webkit-outer-spin-button,
+.time-input input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+}
+.event-popup textarea {
+  width: clamp(15rem, 50%, 25rem);
+  aspect-ratio: 5 / 2;
+  resize: none;
+  background-color: #0f1319;
+  padding: 5px;
+  border-radius: 0.5rem;
+  color: white;
+  transition: border 0.5s, outline 0.5s;
+  outline: none;
+  font-size: 1rem;
+}
+
+.event-popup textarea:focus {
+  border: 0.1rem solid #00a3ff;
+  outline: none;
+}
+
+.event-popup textarea::placeholder {
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  color: #78879e;
+}
+
+.event-popup textarea:focus::placeholder {
+  color: transparent;
+}
+
+.event-popup-btn {
+  width: clamp(15rem, 15cqi, 25rem);
+  height: 2rem;
+  background-color: #ef9011;
+  color: #fff;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(1.5rem, 1.5cqi, 2.2rem);
+  letter-spacing: 0.1rem;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 1.5rem 1remrgba (239, 144, 17, 0.2);
+  cursor: pointer;
+}
+.event-popup-btn:active {
+  transform: translateY(0.1rem);
+}
+.close-event-popup {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
