@@ -71,7 +71,7 @@ Follow these steps to run the app locally:
 ```bash
 # 1. Clone the repository
 git clone https://github.com/your-username/custom-event-calendar.git
-cd custom-event-calendar
+cd event-calendar
 
 # 2. Install project dependencies
 npm install
