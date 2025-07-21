@@ -70,7 +70,7 @@ Follow these steps to run the app locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/custom-event-calendar.git
+git clone https://github.com/akshatverma1234/EventCalender.git
 cd event-calendar
 
 # 2. Install project dependencies
