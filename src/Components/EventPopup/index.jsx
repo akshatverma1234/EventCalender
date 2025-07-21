@@ -1,6 +1,7 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 import "./responsive.css";
+import "./style.css";
 
 const EventPopup = ({
   eventTime,
@@ -13,7 +14,8 @@ const EventPopup = ({
 }) => {
   return (
     <div className="event-popup absolute top-[38%] left-[3rem] bg-black aspect-[10/9] rounded-[1rem] shadow-2xl w-[clamp(25rem,21cqi,40rem)] flex flex-col justify-center items-center gap-y-8">
-      <div className="time-input flex gap-y-[1rem] text-white">
+      <label className="text-white text-2xl !mt-4">Event</label>
+      <div className="time-input flex gap-y-[1rem] text-white !mb-2">
         <div className="event-popup-time">Time</div>
         <input
           type="number"
