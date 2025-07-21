@@ -18,8 +18,13 @@ A modern and responsive event calendar built with **React**, **Tailwind CSS**, a
    - **Edit Event:** Users can update event details by selecting an existing event.
    - **Delete Event:** Easily remove events with a delete icon in the event preview.
 
+   **Add Event:**
    > <img width="747" height="767" alt="image" src="https://github.com/user-attachments/assets/8aac591e-f806-4ee8-b156-dec5af0dadca" />
+   
+   **Edit Event:**
    > <img width="780" height="767" alt="image" src="https://github.com/user-attachments/assets/5fa1fac3-bd80-4445-bb5e-3170d3d76ee7" />
+   
+   **Delete Event:**
    > <img width="1855" height="877" alt="image" src="https://github.com/user-attachments/assets/3c762cdf-0d46-47c7-8d17-610e71ea7b7c" />
 
 
@@ -42,7 +47,9 @@ A modern and responsive event calendar built with **React**, **Tailwind CSS**, a
    - Styled using TailwindCSS and custom responsive styles.
 
    > <img width="361" height="740" alt="image" src="https://github.com/user-attachments/assets/b1af50cc-3ee4-46d1-948a-522065a178fd" />
-   > <img width="355" height="487" alt="image" src="https://github.com/user-attachments/assets/e6c056aa-31df-41aa-bf6c-b1279e2aa530" />\
+   
+   > <img width="355" height="487" alt="image" src="https://github.com/user-attachments/assets/e6c056aa-31df-41aa-bf6c-b1279e2aa530" />
+   
    > <img width="353" height="735" alt="image" src="https://github.com/user-attachments/assets/22cffbac-db34-49f7-b9ac-b3b2041de546" />
 
 ---
