@@ -51,7 +51,7 @@ html {
   flex-direction: column;
   align-items: center;
   width: 25%;
-  border-right: 0 1rem solidOrgba (255, 255, 255, 0 5);
+  border-right: 0 1rem solid rgba(255, 255, 255, 0 5);
 }
 .event-date {
   font-size: clamp(1rem, 1cqi, 1.2rem);
@@ -80,11 +80,7 @@ html {
   flex-direction: column;
   row-gap: 1rem;
 }
-.event-buttons i {
-  font-size: 1.6rem;
-  color: #fff;
-  cursor: pointer;
-}
+
 .currentDate {
   width: 100%;
   height: 100%;
