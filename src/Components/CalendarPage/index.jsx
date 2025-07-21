@@ -6,6 +6,14 @@ import WeekDaysRow from "../WeekDaysRows";
 import EventPopup from "../EventPopup";
 import EventList from "../EventList";
 import CalendarDays from "../CalendarDays";
+import {
+  DndContext,
+  useSensor,
+  useSensors,
+  PointerSensor,
+  DragOverlay,
+  closestCenter,
+} from "@dnd-kit/core";
 
 const CalenderPage = () => {
   const months = [
@@ -40,8 +48,46 @@ const CalenderPage = () => {
   });
 
   const [eventTime, setEventTime] = useState({ hours: "00", minutes: "00" });
-  const [eventText, setEventText] = useState(" ");
+  const [eventText, setEventText] = useState("");
   const [editingEvent, setEditingEvent] = useState(null);
+  const [draggedEvent, setDraggedEvent] = useState(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+  );
+
+  const handleDragStart = (event) => {
+    const eventData = event.active.data?.current;
+    if (eventData) {
+      setDraggedEvent(eventData);
+    }
+  };
+
+  const handleDragEnd = (event) => {
+    const { over } = event;
+    if (over && draggedEvent) {
+      const newDate = new Date(over.id);
+      const conflict = events.some((e) => {
+        const d = new Date(e.date);
+        return (
+          d.getFullYear() === newDate.getFullYear() &&
+          d.getMonth() === newDate.getMonth() &&
+          d.getDate() === newDate.getDate()
+        );
+      });
+
+      if (conflict) {
+        alert("⚠️ Cannot drop: There's already an event on this day.");
+      } else {
+        setEvents((prevEvents) =>
+          prevEvents.map((e) =>
+            e.id === draggedEvent.id ? { ...e, date: newDate } : e
+          )
+        );
+      }
+    }
+    setDraggedEvent(null);
+  };
 
   useEffect(() => {
     const serializedEvents = JSON.stringify(
@@ -74,6 +120,7 @@ const CalenderPage = () => {
       day1.getDate() === day2.getDate()
     );
   };
+
   const handleClick = (day) => {
     const clickedDate = new Date(currentYear, currentMonth, day);
     const today = new Date();
@@ -97,6 +144,7 @@ const CalenderPage = () => {
       )}`,
       text: eventText,
     };
+
     let updatedEvents = [...events];
     if (editingEvent) {
       updatedEvents = updatedEvents.map((event) =>
@@ -137,55 +185,65 @@ const CalenderPage = () => {
       [name]: value.padStart(2, "0"),
     }));
   };
+
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
   return (
-    <div className="calendar-app !w-[95%] h-[95%] !min-w-[90vmin] !mt-1 bg-[#e9e9e9] !p-12 rounded-[3rem] border-2 border-[#0f1319] flex gap-[5rem]">
-      <div className="calendar w-[40%]">
-        <h1 className="heading">Calendar</h1>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      <div className="calendar-app !w-[95%] h-[95%] !min-w-[90vmin] !mt-1 bg-[#e9e9e9] !p-12 rounded-[3rem] border-2 border-[#0f1319] flex gap-[5rem]">
+        <div className="calendar w-[40%]">
+          <h1 className="heading">Calendar</h1>
 
-        <CalendarHeader
-          currentMonth={currentMonth}
-          currentYear={currentYear}
-          months={months}
-          prevMonth={prevMonth}
-          nextMonth={nextMonth}
-        />
-
-        <WeekDaysRow />
-
-        <CalendarDays
-          daysInMonth={daysInMonth}
-          firstDayOfMonth={firstDayOfMonth}
-          currentDate={currentDate}
-          currentMonth={currentMonth}
-          currentYear={currentYear}
-          handleClick={handleClick}
-        />
-      </div>
-
-      <div className="events w-[60%] h-[100%] !py-12 overflow-y-auto">
-        {showEvent && (
-          <EventPopup
-            eventTime={eventTime}
-            handleTimeChange={handleTimeChange}
-            eventText={eventText}
-            setEventText={setEventText}
-            handleEventSubmit={handleEventSubmit}
-            setShowEvent={setShowEvent}
-            editingEvent={editingEvent}
+          <CalendarHeader
+            currentMonth={currentMonth}
+            currentYear={currentYear}
+            months={months}
+            prevMonth={prevMonth}
+            nextMonth={nextMonth}
           />
-        )}
 
-        <EventList
-          events={events}
-          months={months}
-          handleEditEvent={handleEditEvent}
-          handleDeleteEvent={handleDeleteEvent}
-        />
+          <WeekDaysRow />
+
+          <CalendarDays
+            daysInMonth={daysInMonth}
+            firstDayOfMonth={firstDayOfMonth}
+            currentDate={currentDate}
+            currentMonth={currentMonth}
+            currentYear={currentYear}
+            handleClick={handleClick}
+            events={events}
+            activeDragEvent={draggedEvent}
+          />
+        </div>
+
+        <div className="events w-[60%] h-[100%] !py-12 overflow-y-auto">
+          {showEvent && (
+            <EventPopup
+              eventTime={eventTime}
+              handleTimeChange={handleTimeChange}
+              eventText={eventText}
+              setEventText={setEventText}
+              handleEventSubmit={handleEventSubmit}
+              setShowEvent={setShowEvent}
+              editingEvent={editingEvent}
+            />
+          )}
+
+          <EventList
+            events={events}
+            months={months}
+            handleEditEvent={handleEditEvent}
+            handleDeleteEvent={handleDeleteEvent}
+          />
+        </div>
       </div>
-    </div>
+    </DndContext>
   );
 };
 
