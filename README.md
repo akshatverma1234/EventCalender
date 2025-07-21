@@ -11,7 +11,7 @@ A sleek and interactive calendar application built with **React** and **Tailwind
 - 🗑️ Delete individual events
 - 🖼️ Responsive UI with modern design
 - 💾 State-managed via React props and hooks
-- 📌 Styled using **Tailwind CSS** and custom shadows/glows
+- 📌 Styled using **Tailwind CSS** and custom css scripts
 
 ---
 
@@ -41,3 +41,4 @@ npm install
 
 # 3. Start the development server
 npm run dev
+```
