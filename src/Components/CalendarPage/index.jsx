@@ -163,10 +163,11 @@ const CalenderPage = () => {
   };
 
   const handleEditEvent = (e) => {
+    const [hours, minutes] = e.time.split(":"); // Fix split!
     setSelectedDate(new Date(e.date));
     setEventTime({
-      hours: e.time.split(" : ")[0],
-      minutes: e.time.split(" : ")[1],
+      hours: hours.padStart(2, "0"),
+      minutes: minutes.padStart(2, "0"),
     });
     setEventText(e.text);
     setEditingEvent(e);
